@@ -1,18 +1,23 @@
 /*
-  This Library is written for Bonezegei Compute
+  This Library is written for Bonezegei RC522
   Author: Bonezegei (Jofel Batutay)
-  Date: September 2023 
+  Date: October 2023 
 */
 
-#ifndef _BONEZEGEI_COMPUTE_H_
-#define _BONEZEGEI_COMPUTE_H_
-#include <Arduino.h>
+#ifndef _BONEZEGEI_RC522_H_
+#define _BONEZEGEI_RC522_H_
+#include <Arduino.h
+#include <SPI.h>
 
-class Bonezegei_Compute {
+static const int RC522_SPISPEED = 1000000;  // 80 MHz
+class Bonezegei_RC522 {
 public:
-  Bonezegei_Compute();
-  uint8_t checkSum8(char *data);    //8 bit modulo 256
-  uint16_t checkSum16(char *data);  //16 bit modulo 256
+  Bonezegei_RC522(int ss, int rst);
+
+  void begin();
+
+  char _ss, _rst;
+  SPIClass *vspi = NULL;
 };
 
 #endif
